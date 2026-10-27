@@ -13,10 +13,6 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_Pedido;
 
-    @ManyToOne
-    @JoinColumn(name = "id_Produto")
-    private Produto produto;
-
     private Double valor;
     private Double desconto;
     private Double valorTotal;
