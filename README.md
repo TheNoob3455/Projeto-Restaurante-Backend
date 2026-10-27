@@ -1,52 +1,29 @@
-# ChapaQuente — Sistema de Gerenciamento de Restaurante
+# ChapaQuente
 
-O **ChapaQuente** é um sistema de gerenciamento de restaurante desenvolvido com o objetivo de organizar informações e facilitar o gerenciamento de clientes, produtos, ingredientes, pratos e pedidos.
+Sistema de gerenciamento de restaurante desenvolvido com Java e Spring Boot.
 
-> **Status:** Em desenvolvimento.
+**Status:** Em desenvolvimento.
 
-## Tecnologias utilizadas
+## Tecnologias
 
 - Java
 - Spring Boot
+- Spring Data JPA
 - MySQL
 - Maven
 - JavaScript
 
 ## Funcionalidades
 
-O sistema está sendo desenvolvido para incluir:
+- Consulta, cadastro e exclusão de clientes;
+- Gerenciamento de produtos, ingredientes, pratos e pedidos;
+- Verificação de e-mail por código de confirmação;
+- API REST para comunicação entre frontend e backend.
 
-- Gerenciamento de clientes;
-- Cadastro e gerenciamento de produtos;
-- Gerenciamento de ingredientes e pratos;
-- Gerenciamento de pedidos;
-- Comunicação entre frontend e backend por meio de uma API REST.
+## Arquitetura
 
-As funcionalidades podem sofrer alterações durante o desenvolvimento.
-
-## Estrutura do projeto
-
-O backend utiliza uma estrutura organizada para separar as responsabilidades da aplicação:
-
-- **Model:** representação das entidades do sistema.
-- **Controller:** recebimento e tratamento das requisições HTTP.
-- **Service:** implementação das regras de negócio.
-- **Repository:** acesso e persistência dos dados.
-
-## Como executar o projeto
-
-As instruções de instalação e execução serão adicionadas conforme a configuração do ambiente e a evolução do projeto.
-
-## Configuração e segurança
-
-- Configure as variáveis de ambiente necessárias para a execução da aplicação.
-- Não publique senhas, tokens, chaves de API ou outras credenciais no repositório.
-- Configure a conexão com o banco de dados MySQL antes de iniciar o backend.
-
-## Observações
-
-Este projeto está em desenvolvimento. Funcionalidades, estrutura e configurações podem sofrer alterações ao longo do processo.
+O backend utiliza as camadas Model, Controller, Service e Repository para organizar as entidades, requisições, regras de negócio e acesso aos dados.
 
 ---
 
-Desenvolvido como projeto educacional de programação.
+Projeto educacional de desenvolvimento de sistemas.
