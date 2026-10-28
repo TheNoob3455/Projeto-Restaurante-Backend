@@ -11,11 +11,17 @@ import java.util.Optional;
 @RequestMapping("/pedido")
 @CrossOrigin(origins = "*")
 public class PedidoController {
-    private PedidoService pedidoService;
+    private final PedidoService pedidoService;
 
     public PedidoController(PedidoService pedidoService) {
         this.pedidoService = pedidoService;
     }
+
+    public record DadosPedido(
+            Double valor,
+            Double desconto,
+            Double valorTotal
+    ) {}
 
     @GetMapping
     public List<Pedido> getAll(){return pedidoService.getAll();}
@@ -24,5 +30,13 @@ public class PedidoController {
     public Optional<Pedido> get(@PathVariable Integer id){return pedidoService.get(id);}
 
     @PostMapping
-    public Pedido create(@RequestBody Pedido pedido){return pedidoService.save(pedido);}
+    public Pedido create(@RequestBody DadosPedido dadosPedido){
+        Pedido pedido = new Pedido();
+
+        pedido.setValor(dadosPedido.valor());
+        pedido.setDesconto(dadosPedido.desconto());
+        pedido.setValorTotal(dadosPedido.valorTotal());
+
+        return pedidoService.save(pedido);
+    }
 }

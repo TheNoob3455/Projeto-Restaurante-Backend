@@ -18,11 +18,6 @@ public class Mesa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_Mesa;
 
-    @ManyToOne
-    @JoinColumn(table = "id_cliente")
-    Cliente cliente;
-
+    private Integer lugares;
     private Boolean reservado = false;
-    private Date dia_Reservado;
-    private Time hora_Reservada;
 }

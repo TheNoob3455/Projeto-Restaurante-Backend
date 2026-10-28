@@ -17,12 +17,20 @@ public class MesaController {
         this.mesaService = mesaService;
     }
 
+    public record DadosMesa(
+        Integer lugares
+    ){}
+
     @GetMapping
     public List<Mesa> getAll(){return mesaService.getAll();}
 
     @GetMapping("/{id}")
     public Optional<Mesa> get(@PathVariable Integer id){return mesaService.get(id);}
 
-    @PostMapping
-    public Mesa create(@RequestBody Mesa mesa){return mesaService.save(mesa);}
+    @PostMapping()
+    public Mesa create(@RequestBody DadosMesa dadosMesa){
+        Mesa mesa = new Mesa();
+        mesa.setLugares(dadosMesa.lugares());
+        return mesaService.save(mesa);
+    }
 }

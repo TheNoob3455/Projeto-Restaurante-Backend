@@ -11,11 +11,16 @@ import java.util.Optional;
 @RequestMapping("/ingrediente")
 @CrossOrigin(origins = "*")
 public class IngredienteController {
-    private IngredienteService ingredienteService;
+    private final IngredienteService ingredienteService;
 
     public IngredienteController(IngredienteService ingredienteService) {
         this.ingredienteService = ingredienteService;
     }
+
+    public record DadosIngredientes(
+            String nome,
+            Integer estoque
+    ){}
 
     @GetMapping
     public List<Ingrediente> getAll(){return ingredienteService.getAll();}
@@ -24,5 +29,12 @@ public class IngredienteController {
     public Optional<Ingrediente> get(@PathVariable Integer id){return ingredienteService.get(id);}
 
     @PostMapping
-    public Ingrediente create(@RequestBody Ingrediente ingrediente){return ingredienteService.save(ingrediente);}
+    public Ingrediente create(@RequestBody DadosIngredientes dadosIngredientes){
+        Ingrediente ingrediente = new Ingrediente();
+
+        ingrediente.setNome(dadosIngredientes.nome());
+        ingrediente.setEstoque(dadosIngredientes.estoque());
+
+        return ingredienteService.save(ingrediente);
+    }
 }
