@@ -3,6 +3,9 @@ package dev.trapalhoes.ChapaQuente.controller;
 import dev.trapalhoes.ChapaQuente.model.Cliente;
 import dev.trapalhoes.ChapaQuente.model.Mesa;
 import dev.trapalhoes.ChapaQuente.model.Reserva;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.web.bind.annotation.RequestBody;
 import dev.trapalhoes.ChapaQuente.service.ReservaService;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,17 +25,43 @@ public class ReservaController {
     }
 
     public record DadosReserva(
-            Mesa mesa,
-            Cliente cliente,
-            Date dia_reserva,
-            Time hora_reserva
-    ) {}
+            @NotNull Mesa mesa,
+            @NotNull Cliente cliente,
+            @NotNull Date dia_reserva,
+            @NotNull Time hora_reserva
+    ) {
+    }
 
     @GetMapping
-    public List<Reserva> getAll(){return reservaService.getAll();}
+    public List<Reserva> getAll() {
+        return reservaService.getAll();
+    }
 
     @GetMapping("/{id}")
-    public Optional<Reserva> get(@PathVariable Integer id){return reservaService.get(id);}
+    public Optional<Reserva> get(@PathVariable Integer id) {
+        return reservaService.get(id);
+    }
 
-    // incompleto
+    @PostMapping
+    public Reserva cadastrar(@RequestBody DadosReserva dados) {
+        Reserva reserva = new Reserva();
+
+        reserva.setMesa(dados.mesa());
+        reserva.setCliente(dados.cliente());
+        reserva.setDia_reserva(dados.dia_reserva());
+        reserva.setHora_reserva(dados.hora_reserva());
+        reserva.setStatus(Reserva.StatusReserva.ATIVA);
+
+        return reservaService.save(reserva);
+    }
+
+    public record dadosStatus(
+            @NotNull Reserva.StatusReserva status
+    ) {
+    }
+
+    @PatchMapping("/status/{id}")
+    public Reserva atualizar(@PathVariable Integer id, @RequestBody @Valid Reserva.StatusReserva dadosStatus) {
+        return reservaService.atualizar(id, dadosStatus);
+    }
 }

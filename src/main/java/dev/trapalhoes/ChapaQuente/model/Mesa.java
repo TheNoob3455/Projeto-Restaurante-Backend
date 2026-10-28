@@ -18,6 +18,9 @@ public class Mesa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_Mesa;
 
+    @Column(nullable = false)
     private Integer lugares;
+
+    @Column(nullable = false)
     private Boolean reservado = false;
 }

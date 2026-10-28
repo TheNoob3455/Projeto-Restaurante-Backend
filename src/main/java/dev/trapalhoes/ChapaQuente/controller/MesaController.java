@@ -2,6 +2,9 @@ package dev.trapalhoes.ChapaQuente.controller;
 
 import dev.trapalhoes.ChapaQuente.model.Mesa;
 import dev.trapalhoes.ChapaQuente.service.MesaService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +21,7 @@ public class MesaController {
     }
 
     public record DadosMesa(
-        Integer lugares
+            @NotNull @Positive Integer lugares
     ){}
 
     @GetMapping
@@ -28,7 +31,7 @@ public class MesaController {
     public Optional<Mesa> get(@PathVariable Integer id){return mesaService.get(id);}
 
     @PostMapping()
-    public Mesa create(@RequestBody DadosMesa dadosMesa){
+    public Mesa create(@RequestBody @Valid DadosMesa dadosMesa){
         Mesa mesa = new Mesa();
         mesa.setLugares(dadosMesa.lugares());
         return mesaService.save(mesa);

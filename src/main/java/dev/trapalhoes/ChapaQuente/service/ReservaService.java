@@ -21,5 +21,11 @@ public class ReservaService {
 
     public Reserva save(Reserva reserva){return reservaRepository.save(reserva);}
 
+    public Reserva atualizar(Integer id, Reserva.StatusReserva statusReserva){
+        Reserva reserva = reservaRepository.findById(id).orElseThrow(() -> new RuntimeException("Reserva não encontrada"));
+        reserva.setStatus(statusReserva);
+        return reservaRepository.save(reserva);
+    }
+
     public void delete(Integer id){reservaRepository.deleteById(id);}
 }

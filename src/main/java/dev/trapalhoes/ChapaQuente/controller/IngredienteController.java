@@ -2,6 +2,9 @@ package dev.trapalhoes.ChapaQuente.controller;
 
 import dev.trapalhoes.ChapaQuente.model.Ingrediente;
 import dev.trapalhoes.ChapaQuente.service.IngredienteService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +21,9 @@ public class IngredienteController {
     }
 
     public record DadosIngredientes(
-            String nome,
-            Integer estoque
+           @NotNull String nome,
+           @NotNull @PositiveOrZero Integer estoque,
+           @NotNull String unidade
     ){}
 
     @GetMapping
@@ -29,11 +33,12 @@ public class IngredienteController {
     public Optional<Ingrediente> get(@PathVariable Integer id){return ingredienteService.get(id);}
 
     @PostMapping
-    public Ingrediente create(@RequestBody DadosIngredientes dadosIngredientes){
+    public Ingrediente create(@RequestBody @Valid DadosIngredientes dadosIngredientes){
         Ingrediente ingrediente = new Ingrediente();
 
         ingrediente.setNome(dadosIngredientes.nome());
         ingrediente.setEstoque(dadosIngredientes.estoque());
+        ingrediente.setUnidade(dadosIngredientes.unidade());
 
         return ingredienteService.save(ingrediente);
     }

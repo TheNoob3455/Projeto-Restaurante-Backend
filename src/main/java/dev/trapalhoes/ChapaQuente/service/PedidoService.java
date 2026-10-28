@@ -20,5 +20,11 @@ public class PedidoService {
 
     public Pedido save(Pedido pedido){return pedidoRepository.save(pedido);}
 
+    public Pedido atualizarStatus(Integer id, Pedido.StatusPedido status) {
+        Pedido pedido = pedidoRepository.findById(id).orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
+        pedido.setStatus(status);
+        return pedidoRepository.save(pedido);
+    }
+
     public void delete(Integer id){pedidoRepository.deleteById(id);}
 }

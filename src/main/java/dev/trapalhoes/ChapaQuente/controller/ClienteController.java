@@ -3,6 +3,8 @@ package dev.trapalhoes.ChapaQuente.controller;
 import dev.trapalhoes.ChapaQuente.config.PasswordConfig;
 import dev.trapalhoes.ChapaQuente.model.Cliente;
 import dev.trapalhoes.ChapaQuente.service.ClienteService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,10 +23,10 @@ public class ClienteController {
     }
 
     public record DadosClientes(
-        String nome,
-        String senha,
-        String email,
-        String cpf
+        @NotNull String nome,
+        @NotNull String senha,
+        @NotNull String email,
+        @NotNull String cpf
     ){}
 
     public record SenhaHash(
@@ -41,7 +43,7 @@ public class ClienteController {
     public String hash(SenhaHash senhaHash){return passwordConfig.passwordEncoder().encode(senhaHash.senha());}
 
     @PostMapping
-    public Cliente create(@RequestBody DadosClientes dadosClientes){
+    public Cliente create(@RequestBody @Valid DadosClientes dadosClientes){
         Cliente cliente = new Cliente();
 
         cliente.setNome(dadosClientes.nome());

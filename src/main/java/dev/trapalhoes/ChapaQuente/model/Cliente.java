@@ -14,12 +14,15 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_Cliente;
 
-    @ManyToOne
-    @JoinColumn(name = "id_Pedido")
-    private Pedido pedido;
-
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private String senha;
+
+    @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String cpf;
 }

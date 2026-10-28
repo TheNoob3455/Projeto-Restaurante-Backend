@@ -2,6 +2,10 @@ package dev.trapalhoes.ChapaQuente.controller;
 
 import dev.trapalhoes.ChapaQuente.model.Produto;
 import dev.trapalhoes.ChapaQuente.service.ProdutoService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,10 +20,10 @@ public class ProdutoController {
     public ProdutoController (ProdutoService produtoService) {this.produtoService = produtoService;}
 
     public record DadosProduto(
-       Double valor,
-       String nome,
-       String tipo_produto,
-       Integer quantidade
+            @NotNull @Positive Double valor,
+            @NotNull String nome,
+            @NotNull String tipo_produto,
+            @NotNull @PositiveOrZero Integer quantidade
     ) {}
 
     @GetMapping
@@ -29,7 +33,7 @@ public class ProdutoController {
     public Optional<Produto> get(@PathVariable Integer id){return produtoService.get(id);}
 
     @PostMapping
-    public Produto create(@RequestBody DadosProduto dadosProduto){
+    public Produto create(@RequestBody @Valid DadosProduto dadosProduto){
         Produto produto = new Produto();
 
         produto.setValor(dadosProduto.valor());
