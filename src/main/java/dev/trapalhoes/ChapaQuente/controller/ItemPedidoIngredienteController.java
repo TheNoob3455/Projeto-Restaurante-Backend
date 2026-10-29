@@ -44,4 +44,7 @@ public class ItemPedidoIngredienteController {
 
         return this.itemPedidoIngredienteService.save(itemPedidoIngrediente);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {itemPedidoIngredienteService.delete(id);}
 }

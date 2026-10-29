@@ -42,4 +42,7 @@ public class IngredienteController {
 
         return ingredienteService.save(ingrediente);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {ingredienteService.delete(id);}
 }

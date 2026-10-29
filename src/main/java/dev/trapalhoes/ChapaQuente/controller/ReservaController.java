@@ -64,4 +64,7 @@ public class ReservaController {
     public Reserva atualizar(@PathVariable Integer id, @RequestBody @Valid Reserva.StatusReserva dadosStatus) {
         return reservaService.atualizar(id, dadosStatus);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {reservaService.delete(id);}
 }

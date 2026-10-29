@@ -62,4 +62,7 @@ public class PedidoController {
     public Pedido atualizarStatus(@PathVariable Integer id, @RequestBody @Valid DadosStatusPedido dados) {
         return pedidoService.atualizarStatus(id, dados.status());
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {pedidoService.delete(id);}
 }

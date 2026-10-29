@@ -1,6 +1,7 @@
 package dev.trapalhoes.ChapaQuente.service;
 
 import dev.trapalhoes.ChapaQuente.model.Cliente;
+import dev.trapalhoes.ChapaQuente.model.Reserva;
 import dev.trapalhoes.ChapaQuente.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,12 @@ public class ClienteService  {
     public Optional<Cliente> get(Integer id) {return clienteRepository.findById(id);}
 
     public Cliente save (Cliente cliente) {return clienteRepository.save(cliente);}
+
+    public Cliente atualizarPontos(Integer id, Integer pontos){
+        Cliente cliente = clienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+        cliente.setPontos(pontos);
+        return clienteRepository.save(cliente);
+    }
 
     public void delete(Integer id){clienteRepository.deleteById(id);}
 }

@@ -43,4 +43,7 @@ public class ProdutoController {
 
         return produtoService.save(produto);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {produtoService.delete(id);}
 }

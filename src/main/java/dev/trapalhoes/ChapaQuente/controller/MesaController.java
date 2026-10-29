@@ -36,4 +36,7 @@ public class MesaController {
         mesa.setLugares(dadosMesa.lugares());
         return mesaService.save(mesa);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {mesaService.delete(id);}
 }

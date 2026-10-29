@@ -47,4 +47,7 @@ public class ItemPedidoController {
 
         return itemPedidoService.save(itemPedido);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {itemPedidoService.delete(id);}
 }

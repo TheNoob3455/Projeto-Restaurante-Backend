@@ -5,6 +5,7 @@ import dev.trapalhoes.ChapaQuente.model.Cliente;
 import dev.trapalhoes.ChapaQuente.service.ClienteService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,8 +51,20 @@ public class ClienteController {
         cliente.setSenha(passwordConfig.passwordEncoder().encode(dadosClientes.senha()));
         cliente.setEmail(dadosClientes.email());
         cliente.setCpf(dadosClientes.cpf());
+        cliente.setPontos(0);
 
         return clienteService.save(cliente);
     }
 
+    public record DadosPontos(
+            @NotNull @PositiveOrZero Integer pontos
+    ){}
+
+    @PostMapping("/pontos/{id}")
+    public Cliente atualizarPontos(@PathVariable Integer id,@RequestBody @Valid DadosPontos dadosPontos){
+        return clienteService.atualizarPontos(id, dadosPontos.pontos());
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {clienteService.delete(id);}
 }
