@@ -41,7 +41,7 @@ public class ClienteController {
     public Optional<Cliente> get(@PathVariable Integer id){return clienteService.get(id);}
 
     @PostMapping("/hash")
-    public String hash(SenhaHash senhaHash){return passwordConfig.passwordEncoder().encode(senhaHash.senha());}
+    public String hash(@RequestBody SenhaHash senhaHash){return passwordConfig.passwordEncoder().encode(senhaHash.senha());}
 
     @PostMapping
     public Cliente create(@RequestBody @Valid DadosClientes dadosClientes){
