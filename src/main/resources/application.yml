@@ -10,10 +10,10 @@ spring:
       ddl-auto: update
     show-sql: true
 
-  email:
-    remetente: ${EMAIL_REMETENTE}
-    senha: ${EMAIL_SENHA}
+email:
+  remetente: ${EMAIL_REMETENTE}
+  senha: ${EMAIL_SENHA}
 
-  admin:
-    email: ${EMAIL_ADMIN}
-    senha: ${SENHA_ADMIN}
+admin:
+  email: ${EMAIL_ADMIN}
+  senha: ${SENHA_ADMIN}
