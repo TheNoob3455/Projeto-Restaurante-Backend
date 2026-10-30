@@ -26,10 +26,10 @@ public class PedidoController {
     }
 
     public record DadosPedido(
-            @NotBlank Cliente cliente,
-            @NotBlank @Positive Double valor,
-            @NotBlank @PositiveOrZero Double desconto,
-            @NotBlank @PositiveOrZero Double valorTotal
+            @NotNull Cliente cliente,
+            @NotNull @Positive Double valor,
+            @NotNull @PositiveOrZero Double desconto,
+            @NotNull @PositiveOrZero Double valorTotal
     ) {}
 
     public record DadosStatusPedido(
