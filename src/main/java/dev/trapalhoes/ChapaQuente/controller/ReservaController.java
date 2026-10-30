@@ -26,10 +26,10 @@ public class ReservaController {
     }
 
     public record DadosReserva(
-            @NotBlank Mesa mesa,
-            @NotBlank Cliente cliente,
-            @NotBlank Date dia_reserva,
-            @NotBlank Time hora_reserva
+            @NotNull Mesa mesa,
+            @NotNull Cliente cliente,
+            @NotNull Date dia_reserva,
+            @NotNull Time hora_reserva
     ) {
     }
 

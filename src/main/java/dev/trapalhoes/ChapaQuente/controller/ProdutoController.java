@@ -21,10 +21,10 @@ public class ProdutoController {
     public ProdutoController (ProdutoService produtoService) {this.produtoService = produtoService;}
 
     public record DadosProduto(
-            @NotBlank @Positive Double valor,
+            @NotNull @Positive Double valor,
             @NotBlank String nome,
             @NotBlank String tipo_produto,
-            @NotBlank @PositiveOrZero Integer quantidade
+            @NotNull @PositiveOrZero Integer quantidade
     ) {}
 
     @GetMapping

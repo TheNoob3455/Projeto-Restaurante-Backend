@@ -22,7 +22,7 @@ public class MesaController {
     }
 
     public record DadosMesa(
-            @NotBlank @Positive Integer lugares
+            @NotNull @Positive Integer lugares
     ){}
 
     @GetMapping

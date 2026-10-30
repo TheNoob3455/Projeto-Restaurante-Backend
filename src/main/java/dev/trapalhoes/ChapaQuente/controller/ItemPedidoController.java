@@ -25,10 +25,10 @@ public class ItemPedidoController {
     }
 
     public record DadosItemPedido(
-            @NotBlank Produto produto,
-            @NotBlank Pedido pedido,
-            @NotBlank @Positive Integer quantidade,
-            @NotBlank @PositiveOrZero Double precoUnitario
+            @NotNull Produto produto,
+            @NotNull Pedido pedido,
+            @NotNull @Positive Integer quantidade,
+            @NotNull @PositiveOrZero Double precoUnitario
     ) {}
 
     @GetMapping
