@@ -44,16 +44,27 @@ public class ClienteController {
     @GetMapping
     public List<Cliente> getAll(){return clienteService.getAll();}
 
+    public record DadosLogin(
+            @NotBlank String token,
+            @NotBlank String senhaDigitada
+    ){}
+
+    public record RespostaLogin(
+            Cliente cliente,
+            boolean autenticado
+    ) {}
+
     @PostMapping("/{id}")
-    public Cliente get(@PathVariable Integer id, String token){
-        if(!captchaVerification.verificar(token)){
+    public RespostaLogin get(@PathVariable Integer id, @RequestBody @Valid DadosLogin dados){
+        if(!captchaVerification.verificar(dados.token())){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Verificação do CAPTCHA inválida");
         }
-        return clienteService.get(id);
-    }
+        boolean senhaValida = passwordConfig.passwordEncoder().matches(dados.senhaDigitada(), clienteService.getSenha(id));
 
-    @PostMapping("/hash")
-    public String hash(@RequestBody SenhaHash senhaHash){return passwordConfig.passwordEncoder().encode(senhaHash.senha());}
+        Cliente cliente = clienteService.get(id);
+
+        return new RespostaLogin(cliente, senhaValida);
+    }
 
     @PostMapping
     public Cliente create(@RequestBody @Valid DadosClientes dadosClientes){
