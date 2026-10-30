@@ -3,6 +3,7 @@ package dev.trapalhoes.ChapaQuente.controller;
 import dev.trapalhoes.ChapaQuente.model.Ingrediente;
 import dev.trapalhoes.ChapaQuente.service.IngredienteService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +22,9 @@ public class IngredienteController {
     }
 
     public record DadosIngredientes(
-           @NotNull String nome,
-           @NotNull @PositiveOrZero Integer estoque,
-           @NotNull String unidade
+           @NotBlank String nome,
+           @NotBlank @PositiveOrZero Integer estoque,
+           @NotBlank String unidade
     ){}
 
     @GetMapping

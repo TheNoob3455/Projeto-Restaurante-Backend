@@ -8,6 +8,8 @@ import jakarta.mail.Session;
 import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,16 +35,16 @@ public class EmailVerification{
 
 
     public record DadosVerificacao(
-            String email,
-            String codigoInformado
+            @NotBlank String email,
+            @NotBlank String codigoInformado
     ) {}
 
     public record DadosUsuario(
-            String usuario,
-            String email
+            @NotBlank String usuario,
+            @NotBlank String email
     ) {}
     @GetMapping("/usuario")
-    public void enviarCodigo(@RequestBody DadosUsuario dados) throws MessagingException {
+    public void enviarCodigo(@RequestBody @Valid DadosUsuario dados) throws MessagingException {
         String usuario = dados.usuario();
         String email = dados.email();
         String codigo = String.format("%06d", random.nextInt(1_000_000));

@@ -3,6 +3,7 @@ package dev.trapalhoes.ChapaQuente.controller;
 import dev.trapalhoes.ChapaQuente.model.Produto;
 import dev.trapalhoes.ChapaQuente.service.ProdutoService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -20,10 +21,10 @@ public class ProdutoController {
     public ProdutoController (ProdutoService produtoService) {this.produtoService = produtoService;}
 
     public record DadosProduto(
-            @NotNull @Positive Double valor,
-            @NotNull String nome,
-            @NotNull String tipo_produto,
-            @NotNull @PositiveOrZero Integer quantidade
+            @NotBlank @Positive Double valor,
+            @NotBlank String nome,
+            @NotBlank String tipo_produto,
+            @NotBlank @PositiveOrZero Integer quantidade
     ) {}
 
     @GetMapping

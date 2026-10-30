@@ -17,3 +17,7 @@ email:
 admin:
   email: ${EMAIL_ADMIN}
   senha: ${SENHA_ADMIN}
+
+cloudflare:
+  turnstile:
+    secret-key: ${TURNSTILE_SECRET_KEY}

@@ -5,6 +5,7 @@ import dev.trapalhoes.ChapaQuente.model.ItemPedido;
 import dev.trapalhoes.ChapaQuente.model.Produto;
 import dev.trapalhoes.ChapaQuente.service.ItemPedidoService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -24,10 +25,10 @@ public class ItemPedidoController {
     }
 
     public record DadosItemPedido(
-            @NotNull Produto produto,
-            @NotNull Pedido pedido,
-            @NotNull @Positive Integer quantidade,
-            @NotNull @PositiveOrZero Double precoUnitario
+            @NotBlank Produto produto,
+            @NotBlank Pedido pedido,
+            @NotBlank @Positive Integer quantidade,
+            @NotBlank @PositiveOrZero Double precoUnitario
     ) {}
 
     @GetMapping

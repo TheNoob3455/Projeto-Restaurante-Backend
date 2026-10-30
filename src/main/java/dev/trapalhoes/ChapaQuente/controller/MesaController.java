@@ -3,6 +3,7 @@ package dev.trapalhoes.ChapaQuente.controller;
 import dev.trapalhoes.ChapaQuente.model.Mesa;
 import dev.trapalhoes.ChapaQuente.service.MesaService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class MesaController {
     }
 
     public record DadosMesa(
-            @NotNull @Positive Integer lugares
+            @NotBlank @Positive Integer lugares
     ){}
 
     @GetMapping

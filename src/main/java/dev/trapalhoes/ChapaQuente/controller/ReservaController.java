@@ -4,6 +4,7 @@ import dev.trapalhoes.ChapaQuente.model.Cliente;
 import dev.trapalhoes.ChapaQuente.model.Mesa;
 import dev.trapalhoes.ChapaQuente.model.Reserva;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.web.bind.annotation.RequestBody;
 import dev.trapalhoes.ChapaQuente.service.ReservaService;
@@ -25,10 +26,10 @@ public class ReservaController {
     }
 
     public record DadosReserva(
-            @NotNull Mesa mesa,
-            @NotNull Cliente cliente,
-            @NotNull Date dia_reserva,
-            @NotNull Time hora_reserva
+            @NotBlank Mesa mesa,
+            @NotBlank Cliente cliente,
+            @NotBlank Date dia_reserva,
+            @NotBlank Time hora_reserva
     ) {
     }
 

@@ -5,6 +5,7 @@ import dev.trapalhoes.ChapaQuente.model.Ingrediente;
 import dev.trapalhoes.ChapaQuente.model.ItemPedido;
 import dev.trapalhoes.ChapaQuente.service.ItemPedidoIngredienteService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +24,9 @@ public class ItemPedidoIngredienteController {
     }
 
     public record DadosItemPedidoIngrediente(
-            @NotNull ItemPedido itemPedido,
-            @NotNull Ingrediente ingrediente,
-            @NotNull @Positive Integer quantidade
+            @NotBlank ItemPedido itemPedido,
+            @NotBlank Ingrediente ingrediente,
+            @NotBlank @Positive Integer quantidade
     ) {}
 
     @GetMapping
