@@ -18,7 +18,9 @@ public class ClienteService  {
 
     public List<Cliente> getAll(){return clienteRepository.findAll();}
     
-    public Optional<Cliente> get(Integer id) {return clienteRepository.findById(id);}
+    public Cliente get(Integer id) {
+        return clienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+    }
 
     public Cliente save (Cliente cliente) {return clienteRepository.save(cliente);}
 

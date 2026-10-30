@@ -3,6 +3,7 @@ package dev.trapalhoes.ChapaQuente.controller;
 
 import dev.trapalhoes.ChapaQuente.model.Cliente;
 import dev.trapalhoes.ChapaQuente.model.Pedido;
+import dev.trapalhoes.ChapaQuente.service.ClienteService;
 import dev.trapalhoes.ChapaQuente.service.PedidoService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -20,13 +21,15 @@ import java.util.Optional;
 public class PedidoController {
 
     private final PedidoService pedidoService;
+    private final ClienteService clienteService;
 
-    public PedidoController(PedidoService pedidoService) {
+    public PedidoController(PedidoService pedidoService, ClienteService clienteService) {
         this.pedidoService = pedidoService;
+        this.clienteService = clienteService;
     }
 
     public record DadosPedido(
-            @NotNull Cliente cliente,
+            @NotNull Integer id,
             @NotNull @Positive Double valor,
             @NotNull @PositiveOrZero Double desconto,
             @NotNull @PositiveOrZero Double valorTotal
@@ -50,7 +53,7 @@ public class PedidoController {
     public Pedido create(@RequestBody @Valid DadosPedido dadosPedido) {
         Pedido pedido = new Pedido();
 
-        pedido.setCliente(dadosPedido.cliente());
+        pedido.setCliente(clienteService.get(dadosPedido.id));
         pedido.setValor(dadosPedido.valor());
         pedido.setDesconto(dadosPedido.desconto());
         pedido.setValorTotal(dadosPedido.valorTotal());

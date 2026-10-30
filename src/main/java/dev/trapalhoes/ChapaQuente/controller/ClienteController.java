@@ -45,7 +45,7 @@ public class ClienteController {
     public List<Cliente> getAll(){return clienteService.getAll();}
 
     @PostMapping("/{id}")
-    public Optional<Cliente> get(@PathVariable Integer id, String token){
+    public Cliente get(@PathVariable Integer id, String token){
         if(!captchaVerification.verificar(token)){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Verificação do CAPTCHA inválida");
         }
