@@ -22,6 +22,10 @@ public class ClienteService  {
         return clienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
     }
 
+    public String getSenha(Integer id){
+        return clienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado")).getSenha();
+    }
+
     public Cliente save (Cliente cliente) {return clienteRepository.save(cliente);}
 
     public Cliente atualizarPontos(Integer id, Integer pontos){
