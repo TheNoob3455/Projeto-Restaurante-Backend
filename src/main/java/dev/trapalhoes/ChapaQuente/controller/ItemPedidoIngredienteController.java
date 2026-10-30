@@ -24,9 +24,9 @@ public class ItemPedidoIngredienteController {
     }
 
     public record DadosItemPedidoIngrediente(
-            @NotBlank ItemPedido itemPedido,
-            @NotBlank Ingrediente ingrediente,
-            @NotBlank @Positive Integer quantidade
+            @NotNull ItemPedido itemPedido,
+            @NotNull Ingrediente ingrediente,
+            @NotNull @Positive Integer quantidade
     ) {}
 
     @GetMapping

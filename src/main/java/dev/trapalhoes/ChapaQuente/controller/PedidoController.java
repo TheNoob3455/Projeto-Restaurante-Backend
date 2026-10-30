@@ -33,7 +33,7 @@ public class PedidoController {
     ) {}
 
     public record DadosStatusPedido(
-            @NotBlank Pedido.StatusPedido status
+            @NotNull Pedido.StatusPedido status
     ) {}
 
     @GetMapping

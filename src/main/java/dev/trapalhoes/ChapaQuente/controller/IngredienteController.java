@@ -23,7 +23,7 @@ public class IngredienteController {
 
     public record DadosIngredientes(
            @NotBlank String nome,
-           @NotBlank @PositiveOrZero Integer estoque,
+           @NotNull @PositiveOrZero Integer estoque,
            @NotBlank String unidade
     ){}
 
