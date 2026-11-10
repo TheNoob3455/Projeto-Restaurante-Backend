@@ -33,7 +33,7 @@ public class ClienteController {
         @NotBlank String nome,
         @NotBlank String senha,
         @NotBlank String email,
-        @NotBlank String cpf,
+        String cpf,
         @NotBlank String token
     ){}
 
