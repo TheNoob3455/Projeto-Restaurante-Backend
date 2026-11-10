@@ -23,7 +23,7 @@ public class Cliente {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String cpf;
 
     @Column(nullable = false)
